@@ -1,0 +1,9 @@
+[General]
+# Nom affiché dans AMP lors du déploiement
+DisplayName=Farming Simulator 25 (Wine/Linux)
+
+[Variables]
+# Ports exposés dans l'UI d'AMP et réutilisables dans config.json
+GamePort=int:18000
+WebPort=int:18080
+QueryPort=int:18001
