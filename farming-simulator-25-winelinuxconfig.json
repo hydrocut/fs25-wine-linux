@@ -1,1 +1,17 @@
-[]
+{
+  "id": "fs25-wine-linux",
+  "origin": "github",
+  "url": "https://github.com/hydrocut/fs25-wine-linux",
+  "prefix": "hydrocut",
+  "displayName": "Hydrocut's FS25 Templates",
+  "description": "Farming Simulator 25 template for Wine/Linux with Xvfb support",
+  "author": "hydrocut",
+  "version": "1.0.0",
+  "templates": [
+    {
+      "name": "Farming Simulator 25 (Wine/Linux)",
+      "description": "Dedicated server via Wine + Xvfb (no native Linux binary)",
+      "configFile": "farming-simulator-25-winelinux.kvp"
+    }
+  ]
+}
