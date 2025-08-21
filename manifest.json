@@ -1,6 +1,10 @@
 {
-  "id": "farming-simulator-25",
-  "origin": "github",
-  "url": "https://github.com/hydrocut/fs25-wine-linux",
-  "prefix": "hydrocut"
+    "id": "1eb99033-9e8d-4518-9cd6-b190aff08090",
+    "authors": [
+        "hydrocut - Made with AMP Config Generator"
+    ],
+    "origin": "https://github.com/hydrocut - Made with AMP Config Generator/AMPTemplates.git",
+    "url": "https://github.com/hydrocut - Made with AMP Config Generator/AMPTemplates",
+    "imagefile": "",
+    "prefix": "hydrocut - Made with AMP Config Generator"
 }
