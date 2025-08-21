@@ -1,10 +1,6 @@
 {
-    "id": "25f8774d-db29-411b-aae4-745d049507aa",
-    "authors": [
-        "hydrocut - Made with AMP Config Generator"
-    ],
-    "origin": "https://github.com/hydrocut - Made with AMP Config Generator/AMPTemplates.git",
-    "url": "https://github.com/hydrocut - Made with AMP Config Generator/AMPTemplates",
-    "imagefile": "",
-    "prefix": "hydrocut - Made with AMP Config Generator"
+  "id": "hydrocut-fs25",
+  "origin": "github",
+  "url": "https://github.com/hydrocut/fs25-wine-linux",
+  "prefix": "hydrocut"
 }
