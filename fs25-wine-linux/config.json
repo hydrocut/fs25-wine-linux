@@ -1,25 +1,16 @@
 {
   "DisplayName": "Farming Simulator 25 (Wine/Linux)",
   "Description": "Serveur dédié FS25 via Wine + Xvfb sur Linux (AMP Generic).",
-  "Author": "ton-nom",
+  "Author": "hydrocut",
   "Version": "1.0.0",
   "Module": "Generic",
   "TargetOS": "linux",
   "Settings": {
     "WorkingDirectory": "${InstanceDirectory}/fs25",
     "AutoStart": true,
-
-    "PreStartCommand": "set -e; mkdir -p ${InstanceDirectory}/fs25; cd ${InstanceDirectory}/fs25; \
-cat > install_fs25.sh <<'EOF'\n#!/usr/bin/env bash\nset -euo pipefail\nINSTANCE_DIR=\"${INSTANCE_DIR:-$(pwd)}\"\nWINEPREFIX=\"${INSTANCE_DIR}/wineprefix\"\nmkdir -p \"${INSTANCE_DIR}/server\" \"${INSTANCE_DIR}/logs\" \"${WINEPREFIX}\"\nif [ ! -d \"${WINEPREFIX}/drive_c\" ]; then\n  echo \"[FS25] Init WINEPREFIX...\";\n  WINEPREFIX=\"${WINEPREFIX}\" wineboot -i;\nfi\n# Dépose ici ton zip/contours du serveur dédié si besoin\nif [ ! -f \"${INSTANCE_DIR}/server/dedicatedServer.exe\" ]; then\n  if [ -f \"${INSTANCE_DIR}/FarmingSimulator25Dedicated.zip\" ]; then\n    unzip -o \"${INSTANCE_DIR}/FarmingSimulator25Dedicated.zip\" -d \"${INSTANCE_DIR}/server\"\n  fi\nfi\nif [ ! -f \"${INSTANCE_DIR}/server/dedicatedServer.exe\" ]; then\n  echo \"[ERREUR] dedicatedServer.exe introuvable dans ${INSTANCE_DIR}/server\"; exit 1;\nfi\necho \"[FS25] Installation OK.\";\nEOF\n\
-chmod +x install_fs25.sh; \
-cat > start_fs25.sh <<'EOF'\n#!/usr/bin/env bash\nset -euo pipefail\nINSTANCE_DIR=\"${INSTANCE_DIR:-$(pwd)}\"\nWINEPREFIX=\"${INSTANCE_DIR}/wineprefix\"\nSERVER_DIR=\"${INSTANCE_DIR}/server\"\nLOG_DIR=\"${INSTANCE_DIR}/logs\"\nPROFILE_DIR=\"${INSTANCE_DIR}/profile\"\nmkdir -p \"${LOG_DIR}\" \"${PROFILE_DIR}\"\nGAME_PORT=\"${GAME_PORT:-${GamePort}}\"\nQUERY_PORT=\"${QUERY_PORT:-${QueryPort}}\"\nWEB_PORT=\"${WEB_PORT:-${WebPort}}\"\ncd \"${SERVER_DIR}\"\nexport WINEPREFIX\nexport WINEDEBUG=-all\nexport WINEARCH=win64\nxvfb-run -a wine \"${SERVER_DIR}/dedicatedServer.exe\" \\\n  -port \"${GAME_PORT}\" \\\n  -webPort \"${WEB_PORT}\" \\\n  -profile \"${PROFILE_DIR}\" \\\n  -logdir \"${LOG_DIR}\" \\\n  >> \"${LOG_DIR}/fs25_console.log\" 2>&1 &\necho $! > \"${INSTANCE_DIR}/fs25.pid\"\necho \"[FS25] Démarré - web:${WEB_PORT} jeu:${GAME_PORT} PID $(cat ${INSTANCE_DIR}/fs25.pid)\"\nEOF\n\
-chmod +x start_fs25.sh; \
-cat > stop_fs25.sh <<'EOF'\n#!/usr/bin/env bash\nset -euo pipefail\nINSTANCE_DIR=\"${INSTANCE_DIR:-$(pwd)}\"\nif [ -f \"${INSTANCE_DIR}/fs25.pid\" ]; then\n  PID=$(cat \"${INSTANCE_DIR}/fs25.pid\" || true)\n  if [ -n \"${PID}\" ] && ps -p \"${PID}\" >/dev/null 2>&1; then\n    kill \"${PID}\" || true; sleep 3;\n  fi\n  rm -f \"${INSTANCE_DIR}/fs25.pid\"\nfi\nwineserver -k || true\necho \"[FS25] Arrêt demandé.\"\nEOF\n\
-chmod +x stop_fs25.sh; \
-bash ./install_fs25.sh",
-
-    "StartCommand": "INSTANCE_DIR='${InstanceDirectory}/fs25' GAME_PORT='${GamePort}' QUERY_PORT='${QueryPort}' WEB_PORT='${WebPort}' bash ${InstanceDirectory}/fs25/start_fs25.sh",
-    "StopCommand": "INSTANCE_DIR='${InstanceDirectory}/fs25' bash ${InstanceDirectory}/fs25/stop_fs25.sh"
+    "PreStartCommand": "bash ./install_fs25.sh",
+    "StartCommand": "INSTANCE_DIR='${InstanceDirectory}/fs25' GAME_PORT='${GamePort}' QUERY_PORT='${QueryPort}' WEB_PORT='${WebPort}' bash ./start_fs25.sh",
+    "StopCommand": "INSTANCE_DIR='${InstanceDirectory}/fs25' bash ./stop_fs25.sh"
   },
   "Network": {
     "Ports": [
