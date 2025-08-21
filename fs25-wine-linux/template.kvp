@@ -1,0 +1,7 @@
+[General]
+DisplayName=Farming Simulator 25 (Wine/Linux)
+
+[Variables]
+GamePort=int:18000
+WebPort=int:18080
+QueryPort=int:18001
