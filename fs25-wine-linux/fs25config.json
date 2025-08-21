@@ -1,0 +1,46 @@
+{
+  "Application": {
+    "DisplayName": "Farming Simulator 25 (Wine/Linux)",
+    "RootDir": "${InstanceDirectory}/fs25",
+    "WorkingDir": "${InstanceDirectory}/fs25/server",
+
+    /* On Linux on passe par xvfb-run pour fournir un affichage virtuel à Wine */
+    "ExecutableLinux": "xvfb-run",
+
+    /* IMPORTANT : pas de scripts .sh appelés directement (exigence AMP Templates) */
+    "CommandLineArgs": "-a wine dedicatedServer.exe -port {{$ApplicationPort1}} -webPort {{$ApplicationPort2}} -profile {{$FullRootDir}}/profile -logdir {{$FullRootDir}}/logs",
+
+    /* Méthode d’arrêt simple (le binaire FS25 n’expose pas une console STDIN exploitable côté Linux/Wine) */
+    "ExitMethod": "Kill",
+
+    /* Console : on lit la sortie si dispo ; sinon l’état sera géré par le ReadyMode (voir ci-dessous) */
+    "HasReadableConsole": true,
+    "HasWriteableConsole": false,
+
+    /* Réservation des ports par AMP (affichés dans l’UI) */
+    "ApplicationPort1": 18000,   /* Jeu (TCP/UDP) */
+    "ApplicationPort2": 18080,   /* Web (TCP) */
+    "ApplicationPort3": 18001,   /* Query/Beacon (UDP, si utile) */
+
+    /* Démarrage rapide (évite un spinner long si l'app boot en quelques secondes) */
+    "RapidStartup": false
+  },
+
+  "Console": {
+    /* Si le serveur écrit une ligne claire quand il écoute, adapte l’expression ci-dessous.
+       Sinon tu peux laisser ce regex permissif ou le retirer : */
+    "AppReadyRegex": "^.*(listening on|Server running|HTTP|Web UI).*$",
+    /* On jette les lignes très verbeuses de wine si besoin (optionnel) */
+    "ThrowawayMessageRegex": "^(wine:|0024:|00[0-9A-F]{2}:).*$"
+  },
+
+  "Meta": {
+    "DisplayName": "Farming Simulator 25 (Wine/Linux)",
+    "OS": 2,                         /* 1 = Windows, 2 = Linux, 3 = les deux */
+    "Author": "hydrocut",
+    "URL": "https://www.giants-software.com/",
+    "ConfigRoot": "fs25.kvp",
+    "ContainerPolicy": "NoPreference",  /* Tu peux passer à Recommended/Required si tu fais une image Docker custom */
+    "DisplayImageSource": "none:"
+  }
+}
