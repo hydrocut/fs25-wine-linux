@@ -1,1 +1,23 @@
-[]
+[
+    {
+        "Protocol": "UDP",
+        "Port": "18001",
+        "Name": "Query",
+        "Description": "Port used for main game traffic",
+        "Ref": "Query"
+    },
+    {
+        "Protocol": "TCP",
+        "Port": "18001",
+        "Name": "Web",
+        "Description": "Port used for main game traffic",
+        "Ref": "Web"
+    },
+    {
+        "Protocol": "Both",
+        "Port": "18000",
+        "Name": "Game",
+        "Description": "Port used for main game traffic",
+        "Ref": "Game"
+    }
+]
