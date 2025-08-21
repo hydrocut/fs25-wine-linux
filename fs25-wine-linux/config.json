@@ -1,0 +1,22 @@
+{
+  "DisplayName": "Farming Simulator 25 (Wine/Linux)",
+  "Description": "Serveur dédié FS25 via Wine + Xvfb sur Linux (AMP Generic).",
+  "Author": "hydrocut",
+  "Version": "1.0.0",
+  "Module": "Generic",
+  "TargetOS": "linux",
+  "Settings": {
+    "WorkingDirectory": "${InstanceDirectory}/fs25",
+    "AutoStart": true,
+    "PreStartCommand": "chmod +x ./*.sh || true && bash ./install_fs25.sh",
+    "StartCommand": "INSTANCE_DIR='${InstanceDirectory}/fs25' GAME_PORT='${GamePort}' QUERY_PORT='${QueryPort}' WEB_PORT='${WebPort}' bash ./start_fs25.sh",
+    "StopCommand": "INSTANCE_DIR='${InstanceDirectory}/fs25' bash ./stop_fs25.sh"
+  },
+  "Network": {
+    "Ports": [
+      { "Name": "Game",  "Protocol": "Both", "Port": "${GamePort}" },
+      { "Name": "Web",   "Protocol": "TCP",  "Port": "${WebPort}" },
+      { "Name": "Query", "Protocol": "UDP",  "Port": "${QueryPort}" }
+    ]
+  }
+}
