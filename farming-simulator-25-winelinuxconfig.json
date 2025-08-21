@@ -1,3 +1,28 @@
-"Console": {
-  "AppReadyRegex": "^.*(listening on|Web server|Server running|HTTP).*$"
+{
+  "Application": {
+    "DisplayName": "Farming Simulator 25 (Wine/Linux)",
+    "RootDir": "${InstanceDirectory}/farming-simulator-25-winelinux",
+    "WorkingDir": "serverfiles",
+    "ExecutableLinux": "/usr/bin/xvfb-run",
+    "ExecutableWin": "dedicatedServer.exe",
+    "CommandLineArgs": "{{$PlatformArgs}} -a wine dedicatedServer.exe {{$FormattedArgs}}",
+    "ExitMethod": "OS_CLOSE",
+    "HasReadableConsole": true,
+    "HasWriteableConsole": false,
+    "ApplicationPort1": 18000,
+    "ApplicationPort2": 18080,
+    "ApplicationPort3": 18001
+  },
+  "Console": {
+    "AppReadyRegex": "^.*(listening on|Web server|Server running|HTTP).*$"
+  },
+  "Meta": {
+    "DisplayName": "Farming Simulator 25 (Wine/Linux)",
+    "OS": 2,
+    "Author": "hydrocut",
+    "URL": "https://www.giants-software.com/",
+    "ConfigRoot": "farming-simulator-25-winelinux.kvp",
+    "DisplayImageSource": "none:",
+    "ContainerPolicy": "NoPreference"
+  }
 }
