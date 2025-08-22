@@ -1,1 +1,13 @@
-[]
+{
+  "DisplayName": "Farming Simulator 25 (Wine/Linux)",
+  "Module": "GenericModule",
+  "AppID": "2300320",
+  "DeploymentService": "SteamCMD",
+  "WorkingDir": "farming-simulator-25-winelinux/2300320",
+  "StartApplication": "/usr/bin/xvfb-run -s \"-screen 0 1024x768x24\" -a /usr/bin/env WINEDEBUG=-all WINEPREFIX=/home/amp/.wine-fs25 WINEARCH=win64 /usr/bin/wine \"[AMPSERVERDIR]/2300320/dedicatedServer.exe\"",
+  "StopApplication": "",
+  "EnvironmentVariables": {
+    "WINEPREFIX": "/home/amp/.wine-fs25",
+    "WINEARCH": "win64"
+  }
+}
