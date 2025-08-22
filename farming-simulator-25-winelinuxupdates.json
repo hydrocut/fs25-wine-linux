@@ -8,6 +8,8 @@
         "UnzipUpdateSource": false,
         "OverwriteExistingFiles": false,
         "DeleteAfterExtract": true,
-        "OneShot": false
+        "OneShot": false,
+        "SteamLogin": true,
+        "ForceUpdate": true
     }
 ]
